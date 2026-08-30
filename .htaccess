@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# Serve real files/directories directly.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Clean application routes.
+RewriteRule ^$ index.php [L]
+RewriteRule ^login/?$ login.php [L]
+RewriteRule ^dashboard/?$ index.php [L]
+RewriteRule ^orders/?$ index.php [L,QSA]
+RewriteRule ^orders/([0-9]+)/?$ index.php [L,QSA]
+RewriteRule ^customers/?$ index.php [L,QSA]
+RewriteRule ^customers/([0-9]+)/?$ index.php [L,QSA]
+RewriteRule ^parts/?$ index.php [L,QSA]
+RewriteRule ^reports/?$ index.php [L,QSA]
+
+# Fallback.
+RewriteRule ^ index.php [L,QSA]
